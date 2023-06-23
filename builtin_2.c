@@ -141,14 +141,12 @@ void replace_variables(char **args)
 
         if (replace) {
             /* Replace arg with value if it exists */
-            if (value != NULL) {
+            if (value != NULL)
+	    {
                 free(args[i]);
                 args[i] = strdup(value);
                 free(value);
-            /* Print error message if variable doesn't exist */
-            else if (variable != NULL) {
-                fprintf(stderr, "Variable '%s' not found\n", variable);
-            }
+	    }
         }
     }
 }

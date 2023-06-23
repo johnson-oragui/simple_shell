@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     }
 
     FILE *input_stream;
+
     if (isatty(fileno(stdin))) {
         input_stream = stdin;
     } else {
@@ -33,14 +34,17 @@ int main(int argc, char **argv)
 
         /* Read input */
         if (fgets(input, MAX_INPUT_LENGTH, input_stream) == NULL) {
-            break;  // Break loop on input EOF
+	   /* Break loop on input EOF */
+            break;
         }
         /* Remove trailing newline character from input */
         input[strcspn(input, "\n")] = '\0';
 
         /* Tokenize input */
         char *args[MAX_ARGS];
-        int num_args = tokenize_input(input, args);
+        int num_args;
+	
+	num_args = tokenize_input(input, args);
 
         /* Check if input is a comment */
         if (input[0] == '#') {
