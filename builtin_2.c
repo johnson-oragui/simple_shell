@@ -31,14 +31,18 @@ int get_exit_status()
 
 void print_aliases()
 {
-    for (int i = 0; i < alias_count; i++) {
+    int i;
+
+    for (i = 0; i < alias_count; i++) {
         printf("%s='%s'\n", aliases[i].name, aliases[i].value);
     }
 }
 
 void print_alias(char *name)
 {
-    for (int i = 0; i < alias_count; i++) {
+    int i;
+
+    for (i = 0; i < alias_count; i++) {
         if (strcmp(aliases[i].name, name) == 0) {
             printf("%s='%s'\n", aliases[i].name, aliases[i].value);
             return;
@@ -50,7 +54,9 @@ void print_alias(char *name)
 
 void define_alias(char *name, char *value)
 {
-    for (int i = 0; i < alias_count; i++) {
+    int i;
+
+    for (i = 0; i < alias_count; i++) {
         if (strcmp(aliases[i].name, name) == 0) {
             strcpy(aliases[i].value, value);
             return;
@@ -68,14 +74,18 @@ void define_alias(char *name, char *value)
 
 void print_variables()
 {
-    for (int i = 0; i < variable_count; i++) {
+    int i;
+
+    for (i = 0; i < variable_count; i++) {
         printf("%s=%s\n", variables[i], getenv(variables[i]));
     }
 }
 
 char *get_variable_value(char *name)
 {
-    for (int i = 0; i < variable_count; i++) {
+    int i;
+
+    for (i = 0; i < variable_count; i++) {
         if (strcmp(variables[i], name) == 0) {
             return getenv(variables[i]);
         }
@@ -96,7 +106,9 @@ void define_variable(char *name)
 
 void replace_variables(char **args)
 {
-    for (int i = 0; args[i] != NULL; i++) {
+    int  i;
+
+    for (i = 0; args[i] != NULL; i++) {
         char *arg = args[i];
         int length = strlen(arg);
         char *variable = NULL;
