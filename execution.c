@@ -16,13 +16,13 @@ void execute_command(char **args)
         perror("fork");
         return;
     } else if (pid == 0) {
-        // Child process
+        /* Child process */
         if (execvp(args[0], args) == -1) {
             perror("execvp");
             exit(EXIT_FAILURE);
         }
     } else {
-        // Parent process
+        /* Parent process */
         int status;
         waitpid(pid, &status, 0);
     }
@@ -30,8 +30,8 @@ void execute_command(char **args)
 
 int tokenize_input(char *input, char **args)
 {
-    // Implementation of input tokenization
-     int i = 0;
+    /* Implementation of input tokenization */
+    int i = 0;
     char *token = strtok(input, " \t\n\r");
 
     while (token != NULL)
@@ -58,10 +58,10 @@ void run_commands_from_file(char *filename)
     char line[MAX_INPUT_LENGTH];
 
     while (fgets(line, sizeof(line), file) != NULL) {
-        // Remove trailing newline character from line
+        /* Remove trailing newline character from line */
         line[strcspn(line, "\n")] = '\0';
 
-        // Tokenize line
+        /* Tokenize line */
         char *args[MAX_ARGS];
         int num_args = tokenize_input(line, args);
 

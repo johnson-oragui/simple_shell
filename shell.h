@@ -1,4 +1,4 @@
-// shell.h
+/* shell.h */
 
 #ifndef SHELL_H
 #define SHELL_H
@@ -8,7 +8,7 @@
 
 extern int exit_status;
 
-// Function prototypes
+/* Function prototypes */
 void shell_exit(char **args);
 void shell_setenv(char **args);
 void shell_unsetenv(char **args);

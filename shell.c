@@ -19,15 +19,15 @@ int main(int argc, char **argv)
         printf("$ ");
         fgets(input, MAX_INPUT_LENGTH, stdin);
 
-        // Remove trailing newline character from input
+        /* Remove trailing newline character from input */
         input[strcspn(input, "\n")] = '\0';
 
-        // Check if input is a comment
+        /* Check if input is a comment */
         if (input[0] == '#') {
             continue;
         }
 
-        // Tokenize input
+        /* Tokenize input */
         char *args[MAX_ARGS];
         int num_args = tokenize_input(input, args);
 
