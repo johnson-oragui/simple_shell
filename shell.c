@@ -21,7 +21,9 @@ int main(int argc, char **argv)
 
     while (1)
     {
+	/* Tokenize input */
 	char *args[MAX_ARGS];
+	int num_args = tokenize_input(input, args);
 
         printf("$ ");
         fgets(input, MAX_INPUT_LENGTH, stdin);
@@ -33,9 +35,6 @@ int main(int argc, char **argv)
         if (input[0] == '#') {
             continue;
         }
-
-        /* Tokenize input */
-        int num_args = tokenize_input(input, args);
 
         if (num_args > 0) {
             if (strcmp(args[0], "exit") == 0) {
