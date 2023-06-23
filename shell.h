@@ -15,7 +15,7 @@ void shell_unsetenv(char **args);
 void shell_cd(char **args);
 void shell_alias(char **args);
 void execute_command(char **args);
-void run_commands_from_file(char *filename);
+void run_commands_from_file(char *filename, char *program_name);
 int tokenize_input(char *input, char **args);
 void replace_variables(char **args);
 int get_exit_status();

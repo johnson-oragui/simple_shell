@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     char input[MAX_INPUT_LENGTH];
 
     if (argc > 1) {
-        run_commands_from_file(argv[1]);
+        run_commands_from_file(argv[1], argv[0]);
         return 0;
     }
 

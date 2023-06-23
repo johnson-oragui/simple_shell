@@ -50,15 +50,17 @@ int tokenize_input(char *input, char **args)
     return i;
 }
 
-void run_commands_from_file(char *filename)
+void run_commands_from_file(char *filename, char *program_name)
 {
     char line[MAX_INPUT_LENGTH];
+    char *args[MAX_ARGS];
+    int num_args;
 
 
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        fprintf(stderr, "Failed to open file: %s\n", filename);
-        return;
+        fprintf(stderr, "%s: 0: Can't open %s\n", program_name, filename);
+        exit(127);
     }
 
 
@@ -66,8 +68,7 @@ void run_commands_from_file(char *filename)
     while (fgets(line, sizeof(line), file) != NULL)
     {
 	/* Tokenize line */
-	char *args[MAX_ARGS];
-	int num_args = tokenize_input(line, args);
+	num_args = tokenize_input(line, args);
 
         /* Remove trailing newline character from line */
         line[strcspn(line, "\n")] = '\0';
