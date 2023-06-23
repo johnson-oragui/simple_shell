@@ -9,14 +9,16 @@
 
 int main(int argc, char **argv)
 {
+    FILE *input_stream;
     char input[MAX_INPUT_LENGTH];
+    char *args[MAX_ARGS];
+    int num_args;
 
     if (argc > 1) {
         run_commands_from_file(argv[1], argv[0]);
         return 0;
     }
 
-    FILE *input_stream;
 
     if (isatty(fileno(stdin))) {
         input_stream = stdin;
@@ -41,9 +43,6 @@ int main(int argc, char **argv)
         input[strcspn(input, "\n")] = '\0';
 
         /* Tokenize input */
-        char *args[MAX_ARGS];
-        int num_args;
-	
 	num_args = tokenize_input(input, args);
 
         /* Check if input is a comment */
