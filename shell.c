@@ -6,16 +6,23 @@
 #include <unistd.h>
 #include "shell.h"
 
+#define MAX_INPUT_LENGTH 1024
+#define MAX_ARGS 128
+
 int main(int argc, char **argv)
 {
+    char input[MAX_INPUT_LENGTH];
+
     if (argc > 1) {
         run_commands_from_file(argv[1]);
         return 0;
     }
 
-    char input[MAX_INPUT_LENGTH];
 
-    while (1) {
+    while (1)
+    {
+	char *args[MAX_ARGS];
+
         printf("$ ");
         fgets(input, MAX_INPUT_LENGTH, stdin);
 
@@ -28,7 +35,6 @@ int main(int argc, char **argv)
         }
 
         /* Tokenize input */
-        char *args[MAX_ARGS];
         int num_args = tokenize_input(input, args);
 
         if (num_args > 0) {
