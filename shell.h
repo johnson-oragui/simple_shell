@@ -20,7 +20,6 @@ int tokenize_input(char *input, char **args);
 void replace_variables(char **args);
 int get_exit_status();
 char* get_variable_value(char *name);
-int get_exit_status();
 
 
 #endif

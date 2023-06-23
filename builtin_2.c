@@ -106,11 +106,10 @@ void define_variable(char *name)
 
 void replace_variables(char **args)
 {
-    int  i;
+    int i;
 
     for (i = 0; args[i] != NULL; i++) {
         char *arg = args[i];
-        char *variable = NULL;
         char *value = NULL;
         int replace = 0;
 
@@ -134,7 +133,7 @@ void replace_variables(char **args)
             }
             /* Check if arg is a variable */
             else {
-                variable = &arg[1];
+                char *variable = &arg[1];
                 value = get_variable_value(variable);
                 replace = 1;
             }
@@ -146,7 +145,6 @@ void replace_variables(char **args)
                 free(args[i]);
                 args[i] = strdup(value);
                 free(value);
-            }
             /* Print error message if variable doesn't exist */
             else if (variable != NULL) {
                 fprintf(stderr, "Variable '%s' not found\n", variable);

@@ -1,5 +1,3 @@
-/* shell.c */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,18 +16,31 @@ int main(int argc, char **argv)
         return 0;
     }
 
+    FILE *input_stream;
+    if (isatty(fileno(stdin))) {
+        input_stream = stdin;
+    } else {
+        input_stream = fopen("/dev/tty", "r");
+        if (input_stream == NULL) {
+            perror("fopen");
+            return 1;
+        }
+    }
 
     while (1)
     {
-	/* Tokenize input */
-	char *args[MAX_ARGS];
-	int num_args = tokenize_input(input, args);
-
         printf("$ ");
-        fgets(input, MAX_INPUT_LENGTH, stdin);
 
+        /* Read input */
+        if (fgets(input, MAX_INPUT_LENGTH, input_stream) == NULL) {
+            break;  // Break loop on input EOF
+        }
         /* Remove trailing newline character from input */
         input[strcspn(input, "\n")] = '\0';
+
+        /* Tokenize input */
+        char *args[MAX_ARGS];
+        int num_args = tokenize_input(input, args);
 
         /* Check if input is a comment */
         if (input[0] == '#') {
@@ -55,5 +66,10 @@ int main(int argc, char **argv)
         }
     }
 
+    if (input_stream != stdin) {
+        fclose(input_stream);
+    }
+
     return 0;
 }
+
