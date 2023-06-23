@@ -8,6 +8,9 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
+#define MAX_INPUT_LENGTH 1024
+#define MAX_ARGS 128
+
 void execute_command(char **args)
 {
     pid_t pid = fork();

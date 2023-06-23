@@ -110,7 +110,6 @@ void replace_variables(char **args)
 
     for (i = 0; args[i] != NULL; i++) {
         char *arg = args[i];
-        int length = strlen(arg);
         char *variable = NULL;
         char *value = NULL;
         int replace = 0;
