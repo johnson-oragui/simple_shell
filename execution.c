@@ -52,13 +52,14 @@ int tokenize_input(char *input, char **args)
 
 void run_commands_from_file(char *filename)
 {
+    char line[MAX_INPUT_LENGTH];
+
+
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         fprintf(stderr, "Failed to open file: %s\n", filename);
         return;
     }
-
-    char line[MAX_INPUT_LENGTH];
 
 
 
