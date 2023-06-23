@@ -60,15 +60,17 @@ void run_commands_from_file(char *filename)
 
     char line[MAX_INPUT_LENGTH];
 
+
+
     while (fgets(line, sizeof(line), file) != NULL)
     {
+	/* Tokenize line */
 	char *args[MAX_ARGS];
+	int num_args = tokenize_input(line, args);
 
         /* Remove trailing newline character from line */
         line[strcspn(line, "\n")] = '\0';
 
-        /* Tokenize line */
-        int num_args = tokenize_input(line, args);
 
         if (num_args > 0) {
             replace_variables(args);
